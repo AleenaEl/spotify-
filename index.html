@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify</title>
+    <!-- fav icon -->
+    <link rel="icon" type="image/png" href="https://developer.spotify.com/images/guidelines/design/icon3@2x.png">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            /* overflow-y: hidden; */
+        }
+        /* .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        } */
+
+        .sticky-sidebar {
+
+            position: sticky;
+            top: 0px;
+        }
+
+        .fa-heart {
+            transition: .0001s;
+
+        }
+
+        .fa-heart:hover {
+            transform: scale(1.5, 1.9);
+
+
+        }
+
+        .play {
+            transition: .5s;
+        }
+
+        .play1 {
+            transition: .5s;
+        }
+
+        .play:hover {
+            font-weight: bold;
+            transform: scale(1.2, 1.2);
+
+        }
+
+        .play1:hover {
+            font-weight: bold;
+            transform: scale(1.2, 1.2);
+            background-color: gold;
+
+        }
+
+        .premium:hover {
+            background-color: white;
+            color: black;
+        }
+        .beach{
+            transition: .001s;
+        }
+        .beach:hover{
+            transform: scale(1.08);
+            box-shadow: 1px 3px 7px rgb(134, 113, 113);
+        }
+        .card{
+            transition: .001s;
+        }
+        .card:hover {
+            background-color: grey !important;
+            transition: background-color 0.5s;
+            transform: scale(1.09);
+
+        }
+
+        .butto {
+            display: none;
+        }
+
+        .card:hover .butto {
+            display: inline;
+
+
+        }
+
+        .premium-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .premium-content {
+            position: absolute;
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-left: -20px;
+            opacity: 0;
+            width: 300px;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            /* Added transform property */
+            transform: translateY(20px);
+            /* Initial position, adjust as needed */
+        }
+
+        .premium-container:hover .premium-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .premium-explore:hover .entho  {
+            transform: translateY(150px);
+            /* Move downwards on hover, adjust as needed */
+        }
+        .premium-explore:hover .foot  {
+            transform: translateY(150px);
+            /* Move downwards on hover, adjust as needed */
+        }
+
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            margin-top: 20px;
+
+
+        }
+
+        /* .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+        } */
+
+
+
+        .image-container img {
+            width: 150px;
+            height: 150px;
+            transition: transform 0.3s ease-in-out;
+            border: 2px solid lightgreen;
+            border-radius: 10px;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.2);
+        }
+
+        .image-container:hover .overlay {
+            transform: scale(1.2);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .image-container:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg " style="background-color: black; ">
+        <div class="container-fluid ">
+            
+            
+                <img src="https://media.assettype.com/homegrown%2Fimport%2Fbook%2F11096-symalzkbvi-1551251536.jpg?auto=format%2Ccompress&fit=max&format=webp&w=400&dpr=2.6"
+                    height="50" width="100" alt="CoolBrand">
+            
+            <div>
+
+                <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;font-weight: bold;color: white;">Spotify</h3>
+            </div>
+            <!-- <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                
+                <div class="navbar-nav ms-auto me-3 navbar-dark "
+                    style="background-color: rgb(25, 134, 69);border-radius: 10%;">
+                    <a href="#" class="nav-item nav-link ">Log Out</a>
+
+                </div>
+                <div class="me-2 ">
+                    <button class="btn btn-outline-success" type="submit">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section -->
+    <div class="container-fluid ">
+        <div class="row flex-nowrap">
+
+            <div class="col col-md-3  px-sm-2 px-0 sticky-sidebar" style="background-color: black; height: 700px;">
+                <div class="d-flex flex-column align-items-center align-items-sm-start text-white min-vh-100">
+                    <div class="d-flex flex-column align-items-center  px-3 pt-2 text-white mb-3 "
+                        style="background-color: rgba(31, 141, 31, 0.3); width: 100%; border-radius: 15px; border: 2px inset lightgreen;">
+                        <a href="#home"
+                            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" >
+                            <i class="fa-solid fa-house me-2"></i>
+                            <span class="fs-5 d-none d-sm-inline">Home</span>
+                        </a>
+                        <a href="" for="search"
+                            class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" >
+                            <i class="fa-solid fa-magnifying-glass me-2"></i>
+                            <span class="fs-5 d-none d-sm-inline">Search</span>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3 text-white   "
+                        style="background-color: rgb(31, 141, 31,.3); width: 100%; border-radius: 15px; border: 2px inset lightgreen; ">
+                        <a href="#lib" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" 
+                        ><i class="fa-solid fa-music me-2 "></i> 
+                        <span class="fs-5 d-none d-sm-inline">Your Library</span>
+                        </a>
+
+
+                        <form class="d-flex align-items-sm-start mb-2" role="search" id="search">
+                            <i class="fa-solid fa-magnifying-glass pt-2 me-2 "></i>
+                            <input class="form-control  "
+                                style="background-color: rgb(43, 43, 43,.5);border-color: rgb(38, 82, 38); width: 150px; height: 30px;"
+                                type="search" placeholder="Search" aria-label="Search">
+
+                        </form>
+
+
+                    </div>
+
+                    <div class=" mt-3 "
+                        style="border: 2px solid rgb(162, 236, 162);background-color: rgb(28, 27, 27);text-align: center; width: 100%; border-radius: 10px;">
+                        <h5 style="text-align: start;margin-top: 10px; "><i class="fa-solid fa-play"
+                                style="color: #eeeff2;margin-left: 15px; margin-right: 10px;"></i>Recently Played</h5>
+                        <img class="beach" src="https://www.musicinminnesota.com/wp-content/uploads/2022/01/Photo-by-xaviershanley-from-Pexels.jpg"
+                            style="width: 250px; height: 250px;border-radius: 10px; margin: 10px; " />
+                        <h3 style="font-family: 'Courier New', Courier, monospace;font-weight: bold; ">Beach Calmness
+                        </h3>
+                        <h6
+                            style="font-family: 'Courier New', Courier, monospace;font-weight: bold;color: gray;padding-left: 55px;">
+                            Streaming Waves <i class="fa-regular fa-heart heart"
+                                style="color: #f7f7f8; margin-left: 120px;"></i></h6>
+
+                    </div>
+                    <hr>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://t3.ftcdn.net/jpg/06/04/79/52/360_F_604795233_5zIpEvhWizTN7bUxSADUdrQQFGj315G3.jpg"
+                                alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">New Library</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col entire" style="background-color: rgb(20, 20, 20);">
+                <div class="row justify-content-center align-items-center"
+                    style="background-color: rgba(100, 104, 100, 0.1); height: 400px;border-radius: 10px;">
+                    <!-- <div   style="background-color: aliceblue; text-align: end;">
+                        <button class="btn btn-outline-success  "> Explore Premium</button>
+                    </div> -->
+
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500"
+                        style="width: 90%; max-width: 100%;max-height: 350px; overflow: hidden;">
+                        <div class="carousel-inner" id="home">
+                            <div class="carousel-item active" >
+                                <div style="position: absolute;bottom: 15%;left: 5%">
+                                    <button class="btn btn-outline-success rounded-pill bg-success text-black play "
+                                        type="submit" style="width: 100px;">Play</button>
+                                </div>
+                                <div style="position: absolute;bottom: 15%;left: 16%">
+                                    <button class="btn btn-outline-success rounded-pill  text-white play " type="submit"
+                                        style="width: 100px;">Follow</button>
+                                </div>
+                                <img src="https://island106.com/wp-content/uploads/2018/05/Charlie_-On-demand.jpg"
+                                    class="d-block w-100" alt="..." style="height: 400px; ">
+
+
+
+                            </div>
+                            <div class="carousel-item">
+                                <div style="position: absolute;bottom: 15%;left: 5%">
+                                    <button class="btn btn-outline-light rounded-pill bg-light text-black play "
+                                        type="submit" style="width: 100px;">Play</button>
+                                </div>
+                                <div style="position: absolute;bottom: 15%;left: 16%">
+                                    <button class="btn btn-outline-light rounded-pill  text-dark play " type="submit"
+                                        style="width: 100px;">Follow</button>
+                                </div>
+                                <img src="./images/6b03891adac7d632a9efb7c0436bca71.1000x333x1.jpg"
+                                    class="d-block w-100" alt="..." style=" height: 400px;">
+                            </div>
+                            <div class="carousel-item">
+                                <div style="position: absolute;bottom: 13%;left: 5%">
+                                    <button class="btn btn-outline-warning rounded-pill bg-warning text-black play "
+                                        type="submit" style="width: 100px;">Play</button>
+                                </div>
+                                <div style="position: absolute;bottom: 13%;left: 16%">
+                                    <button class="btn btn-outline-warning rounded-pill  text-white play1 "
+                                        type="submit" style="width: 100px;">Follow</button>
+                                </div>
+                                <img src="https://cgtrojantimes.com/wp-content/uploads/2016/12/Starboy.png"
+                                    class="d-block w-100" alt="..." style="object-fit: cover; height: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex;justify-content:space-between;   margin-top: 15px;" id="lib">
+                    <h4
+                        style="font-family:Georgia, 'Times New Roman', Times, serif;color: white;font-weight: bold;margin-left: 15px;">
+                        Uniquely Yours</h4>
+                    <button class="btn btn-outline-success premium rounded-pill exp" data-bs-toggle="collapse" href="#explorePremiumSection" > Explore Premium</button>
+
+                </div>
+                <div class="top search" id="lib"
+                    style="height: 408px;display: flex; justify-content: space-around;margin-top: 10px;margin-bottom: 30px;">
+                    <div class="card " style="width: 15rem;background-color: rgba(65, 64, 64, 0.5)">
+                        <img src="https://i1.sndcdn.com/artworks-GSvPigmkmpKHRi8C-Sv4aJw-t500x500.jpg"
+                            class="card-img-top " alt="..." style="margin: 10px; width: 220px;">
+                        <div class="card-body">
+                            <h6 class=" text-white" style="font-weight: bold;">Adele
+                            </h6>
+                            <p style="color: white;">Artist - Songs that you love right now</p>
+
+                        </div>
+                        <div class="" style="text-align: end; margin-bottom: 20px;margin-right: 20px; ">
+                            <i class="fa-solid fa-play btn btn-success rounded-circle butto  "
+                                style="color: #0d0d0d; height: 35px; width: 48px;"></i>
+
+                        </div>
+
+                    </div>
+                    <div class="card" style="width: 15rem;background-color:  rgba(65, 64, 64, 0.5)">
+                        <img src="https://www.udiscovermusic.com/wp-content/uploads/2019/10/Selena-Gomez-Lose-You-To-Love-Me-.jpg"
+                            class="card-img-top" alt="..." style="margin: 10px; width: 220px;">
+                        <div class="card-body">
+                            <h6 class=" text-white " style="font-weight: bold;">Selena Gomez
+                            </h6>
+                            <p style="color: white;">Listen to the best hits of Selena Gomez</p>
+                        </div>
+                        <div class="" style="text-align: end; margin-bottom: 20px;margin-right: 20px; ">
+                            <i class="fa-solid fa-play btn btn-success rounded-circle butto  "
+                                style="color: #0d0d0d; height: 35px; width: 48px;"></i>
+
+                        </div>
+                    </div>
+                    <div class="card" style="width: 15rem;background-color: rgba(65, 64, 64, 0.5);">
+                        <img src="https://cdns-images.dzcdn.net/images/cover/faada8a8c545b2e3d454267b55c82e14/264x264.jpg"
+                            class="card-img-top" alt="..." style="margin: 10px; width: 220px;">
+                        <div class="card-body">
+                            <h6 class=" text-white" style="font-weight: bold;">Burno Mars
+                            </h6>
+                            <p style="color: white;">Kick back to the best new ones</p>
+                        </div>
+                        <div class="" style="text-align: end; margin-bottom: 20px;margin-right: 20px; ">
+                            <i class="fa-solid fa-play btn btn-success rounded-circle butto  "
+                                style="color: #0d0d0d; height: 35px; width: 48px;"></i>
+
+                        </div>
+                    </div>
+                    <div class="card" style="width: 15rem;background-color:rgba(65, 64, 64, 0.5);">
+                        <img src="https://resources.tidal.com/images/10df0681/6d16/49b1/b6e3/fd2ce38ee957/640x640.jpg"
+                            class="card-img-top" alt="..." style="margin: 10px; width: 220px;">
+                        <div class="card-body">
+                            <h6 class=" text-white" style="font-weight: bold;">Justin Bieber
+                            </h6>
+                            <p style="color: white;">Top Trending of 2023</p>
+                        </div>
+                        <div class="" style="text-align: end; margin-bottom: 20px;margin-right: 20px; ">
+                            <i class="fa-solid fa-play btn btn-success rounded-circle butto  "
+                                style="color: #0d0d0d; height: 35px; width: 48px;"></i>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div style="display: flex;justify-content:space-between;   margin-top: 15px; margin-bottom: 15px;" >
+                    <h4
+                        style="font-family:Georgia, 'Times New Roman', Times, serif;color: white;font-weight: bold;margin-left: 15px;">
+                        Go Premium. Be Happy</h4>
+
+
+                </div>
+                <div class="premium-explore " >
+                    <div class="tog collapse" id="explorePremiumSection"
+                        style="display: flex; justify-content: space-evenly;background-color:rgba(31, 141, 31, 0.3) ;height: 100px;align-items: center;border-radius: 10px;">
+
+                        <div class="premium-container">
+                            <button class="btn btn-outline-light premium rounded-pill"> $10/month</button>
+                            <div class="premium-content text-white" style="background-color:rgb(33, 33, 33,.5) ;">
+                                <h4>Mini</h4>
+                                <p>1 account on mobile only</p>
+                                <ul type="disc">
+                                    <li>Ad-free music listening </li>
+                                    <li>Group Session</li>
+                                    <li>Download 30 songs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="premium-container">
+                            <button class="btn btn-outline-light premium rounded-pill">$50/6-Months</button>
+                            <div class="premium-content text-white" style="background-color:rgb(33, 33, 33,.5) ;">
+                                <h4>Semi</h4>
+                                <p>2 accounts</p>
+                                <ul>
+                                    <li>For couples who live together</li>
+                                    <li>Ad-free music listening</li>
+                                    <li>Download 10k songs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="premium-container">
+                            <button class="btn btn-outline-light premium rounded-pill">$150/Year</button>
+                            <div class="premium-content text-white" style="background-color:rgb(33, 33, 33,.5) ;">
+                                <h4>Family</h4>
+                                <p>Up to 6 accounts</p>
+                                <ul>
+                                    <li>For family who live together</li>
+                                    <li>Block explicit music</li>
+                                    <li>Ad-free music listening</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entho">
+                        <div style="display: flex;justify-content:space-between;   margin-top: 80px;">
+                            <h4
+                                style="font-family:Georgia, 'Times New Roman', Times, serif;color: white;font-weight: bold;margin-left: 15px;">
+                                Best Of Artists</h4>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="row1"
+                                style="display: flex;flex-direction: row;justify-content: center;gap: 10px;">
+                                <div class="image-container">
+                                    <img src="https://www.billboard.com/wp-content/uploads/media/justin-bieber-id-cover-2015-billboard-embed.jpg?w=510"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">Justin B</h6>
+                                            <!-- <p>Description goes here</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="https://cdns-images.dzcdn.net/images/cover/d85200712419ae036b277deffeea5181/264x264.jpg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">Billie Eilish</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="https://www.levelman.com/content/images/2023/07/theweeknd_beautybehindthemadne_adtr.jpg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">Weekend</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/62/2d/19/622d19da-eb88-022c-2bc5-d843657defe8/886444549851.jpg/1200x1200bb.jpg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">1D</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row1"
+                                style="display: flex;flex-direction: row;justify-content: center;gap: 10px;">
+                                <div class="image-container">
+                                    <img src="https://i.tribune.com.pk/media/images/1735144-ar_cover_dnaindia-1528978627/1735144-ar_cover_dnaindia-1528978627.jpg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">AR rahman</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="https://i.dailymail.co.uk/i/newpix/2018/05/02/01/4BBFCB2200000578-5680395-Brookelle_showed_her_followers_this_look_at_a_recreation_of_Aria-a-3_1525220967132.jpg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">Ariana</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="https://media.pitchfork.com/photos/6076fd2e17d37fe4717d4907/master/pass/Olivia-Rodrigo-SOUR.jpeg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">olivia</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-container">
+                                    <img src="https://i1.sndcdn.com/artworks-000352832037-wrgmq5-t500x500.jpg"
+                                        alt="Image">
+                                    <div class="overlay">
+                                        <div class="overlay-text">
+                                            <h6 style="font-size: medium;">Dua Lipa</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="verde" style="background-color: rgb(20, 20, 20);;height: 100px;">
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <div class="  foot" style="margin-top: 50px;width: auto;">
+
+                    <footer class=" text-center text-white" style="background-color:rgb(29, 28, 28);">
+                        <!-- Grid container -->
+                        <div class="container p-4 pb-0">
+                            <!-- Section: Social media -->
+                            <section class="mb-4">
+                                <!-- Facebook -->
+                                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                                    <i class="fa-brands fa-facebook-f" style="color: #608d53;"></i>
+                                </a>
+
+                                <!-- Twitter -->
+                                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                                        <i class="fa-brands fa-twitter" style="color: #608d53;"></i></a>
+
+                                <!-- Google -->
+                                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                                        <i class="fa-brands fa-google" style="color: #608d53;"></i></a>
+
+                                <!-- Instagram -->
+                                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                                        <i class="fa-brands fa-instagram" style="color: #608d53;"></i></a>
+
+                                
+                            </section>
+                            <!-- Section: Social media -->
+                        </div>
+                        <!-- Grid container -->
+
+                        <!-- Copyright -->
+                        <div class="text-center p-3" style="background-color:rgb(20, 20, 20);">
+                            © 2024 Copyright:
+                            <a class="text-white" href="https://mdbootstrap.com/">Spotify.com</a>
+                        </div>
+                        <!-- Copyright -->
+                    </footer>
+
+                </div>
+               
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
